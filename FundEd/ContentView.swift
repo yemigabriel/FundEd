@@ -8,31 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var viewRouter: ViewRouter
     var body: some View {
-        TabView {
-            
-            HomeView()
-                .tabItem {
-                    Label("Home", systemImage: "homekit")
+        if viewRouter.isNewUser {
+            Text("Onboarding")
+                .onAppear {
+                    viewRouter.isNewUser = false
                 }
-            
-            Text("Explore")
-                .padding()
-                .tabItem {
-                    Label("Explore", systemImage: "magnifyingglass")
-                }
-        
-            Text("Apply")
-                .padding()
-                .tabItem {
-                    Label("Apply", systemImage: "square.and.arrow.up")
-                }
-        
-            Text("Hello, world!")
-                .padding()
-                .tabItem {
-                    Label("Account", systemImage: "person")
-                }
+        } else {
+            MainTabView()
         }
     }
 }
