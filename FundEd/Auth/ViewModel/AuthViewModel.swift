@@ -25,12 +25,19 @@ class AuthViewModel: ObservableObject {
     
     init(authService: AuthServiceProtocol = AuthService.shared) {
         self.authService = authService
-        authService.userPublisher.sink{ [weak self] user in
-            if let user = user {
-                self?.user = user
-                self?.authState = .currentUser
+        authService.userPublisher.sink { [weak self] completion in
+            switch completion {
+            case .failure(let error):
+                self?.errorMessage = error.localizedDescription
+                self?.hasError = true
+            case .finished:
+                print("completion: \(completion)")
             }
-        }.store(in: &cancellables)
+        } receiveValue: { [weak self] user in
+            self?.user = user
+            self?.authState = .currentUser
+        }
+        .store(in: &cancellables)
     }
     
     func isValidEmail(_ email: String) -> Bool {

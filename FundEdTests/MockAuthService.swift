@@ -5,23 +5,26 @@
 //  Created by Yemi Gabriel on 2/26/22.
 //
 
-import Foundation
+import Combine
 @testable import FundEd
 
 final class MockAuthService: AuthServiceProtocol {
-    @Published var user: User?
-    var userPublisher: Published<User?>.Publisher{ $user }
+    var userPublisher = PassthroughSubject<User, FirebaseError>()
+    
+//    @Published var user: User?
     static let shared = MockAuthService()
     
     private init() {
     }
     
     func signIn(email: String, password: String) {
-        self.user = User(id: "id", name: "name", email: email)
+        let user = User(id: "id", name: "name", email: email)
+        userPublisher.send(user)
     }
     
     func signUp(_ user: User) {
-        self.user = user
+//        self.user = user
+        userPublisher.send(user)
     }
     
     func getCurrentUser() {
