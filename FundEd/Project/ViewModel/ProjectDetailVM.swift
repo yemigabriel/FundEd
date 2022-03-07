@@ -15,6 +15,7 @@ class ProjectDetailVM: ObservableObject {
     @Published var errorMessage: String = ""
     @Published var currentTotalDonation: Double = 0.00
     @Published var isDonateActive = false
+    @Published var showLogin = false
     
     private var projectService: ProjectServiceProtocol
     private var donationService: DonationServiceProtocol
@@ -23,6 +24,13 @@ class ProjectDetailVM: ObservableObject {
     var isAuthor: Bool {
         if let savedUser = UserDefaults.standard.getUser() {
             return savedUser.id == project.authorId
+        }
+        return false
+    }
+    
+    var isLoggedIn: Bool {
+        if let _ = UserDefaults.standard.getUser() {
+            return true
         }
         return false
     }

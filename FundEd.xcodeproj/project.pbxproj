@@ -23,7 +23,6 @@
 		A02D8BB927CA924D00C173B3 /* ProjectCardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BB827CA924D00C173B3 /* ProjectCardVM.swift */; };
 		A02D8BBB27CA992C00C173B3 /* ProjectCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BBA27CA992C00C173B3 /* ProjectCardView.swift */; };
 		A02D8BBD27CA9FFB00C173B3 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BBC27CA9FFB00C173B3 /* View+Extension.swift */; };
-		A02D8BBF27CAE23700C173B3 /* schools_lagos.json in Resources */ = {isa = PBXBuildFile; fileRef = A02D8BBE27CAE23600C173B3 /* schools_lagos.json */; };
 		A02D8BC127CAE4E000C173B3 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BC027CAE4E000C173B3 /* Bundle+Extension.swift */; };
 		A02D8BC327CB719B00C173B3 /* ProjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BC227CB719B00C173B3 /* ProjectDetailView.swift */; };
 		A02D8BC527CB733600C173B3 /* ProjectDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BC427CB733600C173B3 /* ProjectDetailVM.swift */; };
@@ -31,12 +30,27 @@
 		A02D8BC927CBBC3000C173B3 /* DonationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BC827CBBC3000C173B3 /* DonationService.swift */; };
 		A02D8BCB27CBC5F800C173B3 /* AddDonationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BCA27CBC5F700C173B3 /* AddDonationView.swift */; };
 		A02D8BCD27CBE7E600C173B3 /* AddDonationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BCC27CBE7E600C173B3 /* AddDonationVM.swift */; };
+		A02D8BCF27CBEC0300C173B3 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BCE27CBEC0300C173B3 /* Collection+Extension.swift */; };
+		A02D8BD127CC494600C173B3 /* Webview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BD027CC494600C173B3 /* Webview.swift */; };
+		A02D8BD327CC4D9C00C173B3 /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BD227CC4D9C00C173B3 /* PaymentView.swift */; };
+		A02D8BD527CC5E0D00C173B3 /* PaymentVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BD427CC5E0D00C173B3 /* PaymentVM.swift */; };
+		A02D8BD727CC6D6300C173B3 /* Binding+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BD627CC6D6300C173B3 /* Binding+Extension.swift */; };
+		A02D8BD927CC7A4100C173B3 /* AddProjectVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BD827CC7A4100C173B3 /* AddProjectVM.swift */; };
+		A02D8BDB27CC7A6B00C173B3 /* AddProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BDA27CC7A6B00C173B3 /* AddProjectView.swift */; };
+		A02D8BDD27CC7AFD00C173B3 /* PhotoPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BDC27CC7AFD00C173B3 /* PhotoPickerController.swift */; };
+		A02D8BDF27CC7B6D00C173B3 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BDE27CC7B6D00C173B3 /* FileManager+Extension.swift */; };
+		A02D8BE127CC7BAE00C173B3 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BE027CC7BAE00C173B3 /* Date+Extension.swift */; };
+		A02D8BE327CC7F3600C173B3 /* ImageUploadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02D8BE227CC7F3600C173B3 /* ImageUploadService.swift */; };
 		A08C065727BEC00A0043B9DC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08C065627BEC00A0043B9DC /* LoginView.swift */; };
 		A08C065927BEC0AC0043B9DC /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08C065827BEC0AC0043B9DC /* AuthViewModel.swift */; };
 		A08C065D27BEC9E20043B9DC /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08C065C27BEC9E20043B9DC /* AuthView.swift */; };
 		A08C065F27BECA740043B9DC /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08C065E27BECA740043B9DC /* SignupView.swift */; };
+		A0910BD027CF26110082B444 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A0910BCF27CF26110082B444 /* FirebaseStorage */; };
+		A0910BD227CF261D0082B444 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = A0910BD127CF261D0082B444 /* FirebaseStorageSwift-Beta */; };
+		A0910BD627CF62250082B444 /* schools_lagos.json in Resources */ = {isa = PBXBuildFile; fileRef = A0910BD527CF62250082B444 /* schools_lagos.json */; };
 		A09E163E27C78129002CDAB9 /* UserProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09E163D27C78129002CDAB9 /* UserProfileService.swift */; };
 		A0A5171D26D53FCF00FE363F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A5171C26D53FCF00FE363F /* HomeView.swift */; };
+		A0B61C1827D465FE0097C866 /* Alert+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B61C1727D465FE0097C866 /* Alert+Extension.swift */; };
 		A0D0471826C83A7300F86652 /* FundEdApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D0471726C83A7300F86652 /* FundEdApp.swift */; };
 		A0D0471A26C83A7300F86652 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D0471926C83A7300F86652 /* ContentView.swift */; };
 		A0D0471C26C83A7500F86652 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0D0471B26C83A7500F86652 /* Assets.xcassets */; };
@@ -48,6 +62,7 @@
 		A0EB25CC27C24596004E4859 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = A0EB25CB27C24596004E4859 /* FirebaseFirestoreSwift-Beta */; };
 		A0EB25CF27C24760004E4859 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EB25CE27C24760004E4859 /* AuthService.swift */; };
 		A0EB25D327C26856004E4859 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EB25D227C26856004E4859 /* User.swift */; };
+		A0F268A127D5C7C1000C5AD5 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F268A027D5C7C1000C5AD5 /* SearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +92,6 @@
 		A02D8BB827CA924D00C173B3 /* ProjectCardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCardVM.swift; sourceTree = "<group>"; };
 		A02D8BBA27CA992C00C173B3 /* ProjectCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCardView.swift; sourceTree = "<group>"; };
 		A02D8BBC27CA9FFB00C173B3 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
-		A02D8BBE27CAE23600C173B3 /* schools_lagos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schools_lagos.json; sourceTree = "<group>"; };
 		A02D8BC027CAE4E000C173B3 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		A02D8BC227CB719B00C173B3 /* ProjectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailView.swift; sourceTree = "<group>"; };
 		A02D8BC427CB733600C173B3 /* ProjectDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailVM.swift; sourceTree = "<group>"; };
@@ -85,12 +99,25 @@
 		A02D8BC827CBBC3000C173B3 /* DonationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationService.swift; sourceTree = "<group>"; };
 		A02D8BCA27CBC5F700C173B3 /* AddDonationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDonationView.swift; sourceTree = "<group>"; };
 		A02D8BCC27CBE7E600C173B3 /* AddDonationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDonationVM.swift; sourceTree = "<group>"; };
+		A02D8BCE27CBEC0300C173B3 /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
+		A02D8BD027CC494600C173B3 /* Webview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webview.swift; sourceTree = "<group>"; };
+		A02D8BD227CC4D9C00C173B3 /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
+		A02D8BD427CC5E0D00C173B3 /* PaymentVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentVM.swift; sourceTree = "<group>"; };
+		A02D8BD627CC6D6300C173B3 /* Binding+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Extension.swift"; sourceTree = "<group>"; };
+		A02D8BD827CC7A4100C173B3 /* AddProjectVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectVM.swift; sourceTree = "<group>"; };
+		A02D8BDA27CC7A6B00C173B3 /* AddProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectView.swift; sourceTree = "<group>"; };
+		A02D8BDC27CC7AFD00C173B3 /* PhotoPickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerController.swift; sourceTree = "<group>"; };
+		A02D8BDE27CC7B6D00C173B3 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
+		A02D8BE027CC7BAE00C173B3 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		A02D8BE227CC7F3600C173B3 /* ImageUploadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadService.swift; sourceTree = "<group>"; };
 		A08C065627BEC00A0043B9DC /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A08C065827BEC0AC0043B9DC /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		A08C065C27BEC9E20043B9DC /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		A08C065E27BECA740043B9DC /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		A0910BD527CF62250082B444 /* schools_lagos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schools_lagos.json; sourceTree = "<group>"; };
 		A09E163D27C78129002CDAB9 /* UserProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileService.swift; sourceTree = "<group>"; };
 		A0A5171C26D53FCF00FE363F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A0B61C1727D465FE0097C866 /* Alert+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Extension.swift"; sourceTree = "<group>"; };
 		A0D0471426C83A7300F86652 /* FundEd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FundEd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0D0471726C83A7300F86652 /* FundEdApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundEdApp.swift; sourceTree = "<group>"; };
 		A0D0471926C83A7300F86652 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +127,7 @@
 		A0EB25C027C2307F004E4859 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A0EB25CE27C24760004E4859 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		A0EB25D227C26856004E4859 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A0F268A027D5C7C1000C5AD5 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +147,8 @@
 				A0EB25C827C24596004E4859 /* FirebaseAuth in Frameworks */,
 				A0EB25CA27C24596004E4859 /* FirebaseFirestore in Frameworks */,
 				A02D8BB327CA83D000C173B3 /* SDWebImage in Frameworks */,
+				A0910BD227CF261D0082B444 /* FirebaseStorageSwift-Beta in Frameworks */,
+				A0910BD027CF26110082B444 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +181,7 @@
 				A02D8BA127CA779E00C173B3 /* ProjectListView.swift */,
 				A02D8BBA27CA992C00C173B3 /* ProjectCardView.swift */,
 				A02D8BC227CB719B00C173B3 /* ProjectDetailView.swift */,
+				A02D8BDA27CC7A6B00C173B3 /* AddProjectView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -161,6 +192,7 @@
 				A02D8BB427CA84BF00C173B3 /* ProjectListVM.swift */,
 				A02D8BB827CA924D00C173B3 /* ProjectCardVM.swift */,
 				A02D8BC427CB733600C173B3 /* ProjectDetailVM.swift */,
+				A02D8BD827CC7A4100C173B3 /* AddProjectVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -188,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				A02D8BCA27CBC5F700C173B3 /* AddDonationView.swift */,
+				A02D8BD227CC4D9C00C173B3 /* PaymentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -196,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				A02D8BCC27CBE7E600C173B3 /* AddDonationVM.swift */,
+				A02D8BD427CC5E0D00C173B3 /* PaymentVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -284,6 +318,9 @@
 		A08C065427BEBFC00043B9DC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A02D8BD027CC494600C173B3 /* Webview.swift */,
+				A02D8BDC27CC7AFD00C173B3 /* PhotoPickerController.swift */,
+				A0F268A027D5C7C1000C5AD5 /* SearchBar.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -294,8 +331,20 @@
 				A02D8BBC27CA9FFB00C173B3 /* View+Extension.swift */,
 				A02D8BC027CAE4E000C173B3 /* Bundle+Extension.swift */,
 				A02D8BC627CBB03000C173B3 /* UserDefaults+Extension.swift */,
+				A02D8BCE27CBEC0300C173B3 /* Collection+Extension.swift */,
+				A02D8BD627CC6D6300C173B3 /* Binding+Extension.swift */,
+				A02D8BDE27CC7B6D00C173B3 /* FileManager+Extension.swift */,
+				A02D8BE027CC7BAE00C173B3 /* Date+Extension.swift */,
+				A0B61C1727D465FE0097C866 /* Alert+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A0910BCE27CF26110082B444 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A0D0470B26C83A7300F86652 = {
@@ -304,6 +353,7 @@
 				A0D0471626C83A7300F86652 /* FundEd */,
 				A02D8B8C27C9AC4600C173B3 /* FundEdTests */,
 				A0D0471526C83A7300F86652 /* Products */,
+				A0910BCE27CF26110082B444 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -319,7 +369,7 @@
 		A0D0471626C83A7300F86652 /* FundEd */ = {
 			isa = PBXGroup;
 			children = (
-				A02D8BBE27CAE23600C173B3 /* schools_lagos.json */,
+				A0910BD527CF62250082B444 /* schools_lagos.json */,
 				A02D8BAD27CA7BB200C173B3 /* School */,
 				A02D8BA727CA79BC00C173B3 /* Donate */,
 				A02D8B9C27CA774600C173B3 /* Project */,
@@ -358,6 +408,7 @@
 				A09E163D27C78129002CDAB9 /* UserProfileService.swift */,
 				A02D8BB627CA919400C173B3 /* ProjectService.swift */,
 				A02D8BC827CBBC3000C173B3 /* DonationService.swift */,
+				A02D8BE227CC7F3600C173B3 /* ImageUploadService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -402,6 +453,8 @@
 				A0EB25C927C24596004E4859 /* FirebaseFirestore */,
 				A0EB25CB27C24596004E4859 /* FirebaseFirestoreSwift-Beta */,
 				A02D8BB227CA83D000C173B3 /* SDWebImage */,
+				A0910BCF27CF26110082B444 /* FirebaseStorage */,
+				A0910BD127CF261D0082B444 /* FirebaseStorageSwift-Beta */,
 			);
 			productName = FundEd;
 			productReference = A0D0471426C83A7300F86652 /* FundEd.app */;
@@ -462,7 +515,7 @@
 			files = (
 				A0D0471F26C83A7500F86652 /* Preview Assets.xcassets in Resources */,
 				A0EB25C127C2307F004E4859 /* GoogleService-Info.plist in Resources */,
-				A02D8BBF27CAE23700C173B3 /* schools_lagos.json in Resources */,
+				A0910BD627CF62250082B444 /* schools_lagos.json in Resources */,
 				A0D0471C26C83A7500F86652 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,13 +538,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				A08C065F27BECA740043B9DC /* SignupView.swift in Sources */,
+				A02D8BDF27CC7B6D00C173B3 /* FileManager+Extension.swift in Sources */,
+				A02D8BE127CC7BAE00C173B3 /* Date+Extension.swift in Sources */,
 				A02D8BB027CA7BCB00C173B3 /* School.swift in Sources */,
 				A08C065927BEC0AC0043B9DC /* AuthViewModel.swift in Sources */,
+				A02D8BD127CC494600C173B3 /* Webview.swift in Sources */,
+				A02D8BDD27CC7AFD00C173B3 /* PhotoPickerController.swift in Sources */,
 				A02D8BC927CBBC3000C173B3 /* DonationService.swift in Sources */,
+				A02D8BD327CC4D9C00C173B3 /* PaymentView.swift in Sources */,
 				A0A5171D26D53FCF00FE363F /* HomeView.swift in Sources */,
 				A08C065D27BEC9E20043B9DC /* AuthView.swift in Sources */,
 				A02D8BBB27CA992C00C173B3 /* ProjectCardView.swift in Sources */,
 				A0D0471A26C83A7300F86652 /* ContentView.swift in Sources */,
+				A02D8BD527CC5E0D00C173B3 /* PaymentVM.swift in Sources */,
 				A02D8BCB27CBC5F800C173B3 /* AddDonationView.swift in Sources */,
 				A02D8BB727CA919400C173B3 /* ProjectService.swift in Sources */,
 				A02D8BAC27CA79F800C173B3 /* Donation.swift in Sources */,
@@ -503,16 +562,23 @@
 				A02D8BB527CA84BF00C173B3 /* ProjectListVM.swift in Sources */,
 				A0EB25D327C26856004E4859 /* User.swift in Sources */,
 				A08C065727BEC00A0043B9DC /* LoginView.swift in Sources */,
+				A02D8BCF27CBEC0300C173B3 /* Collection+Extension.swift in Sources */,
 				A02D8BA627CA793500C173B3 /* ProjectMaterial.swift in Sources */,
 				A02D8B9927CA17C000C173B3 /* ViewRouter.swift in Sources */,
+				A02D8BE327CC7F3600C173B3 /* ImageUploadService.swift in Sources */,
 				A02D8BA227CA779E00C173B3 /* ProjectListView.swift in Sources */,
+				A02D8BD927CC7A4100C173B3 /* AddProjectVM.swift in Sources */,
 				A09E163E27C78129002CDAB9 /* UserProfileService.swift in Sources */,
 				A02D8BBD27CA9FFB00C173B3 /* View+Extension.swift in Sources */,
 				A0D0471826C83A7300F86652 /* FundEdApp.swift in Sources */,
+				A02D8BDB27CC7A6B00C173B3 /* AddProjectView.swift in Sources */,
+				A0F268A127D5C7C1000C5AD5 /* SearchBar.swift in Sources */,
+				A02D8BD727CC6D6300C173B3 /* Binding+Extension.swift in Sources */,
 				A02D8BC727CBB03000C173B3 /* UserDefaults+Extension.swift in Sources */,
 				A0EB25CF27C24760004E4859 /* AuthService.swift in Sources */,
 				A02D8B9B27CA214F00C173B3 /* MainTabView.swift in Sources */,
 				A02D8BC327CB719B00C173B3 /* ProjectDetailView.swift in Sources */,
+				A0B61C1827D465FE0097C866 /* Alert+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,6 +670,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -665,6 +732,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_ARCHS = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -785,6 +853,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A02D8BB127CA83D000C173B3 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		A0910BCF27CF26110082B444 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0EB25C427C24596004E4859 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		A0910BD127CF261D0082B444 /* FirebaseStorageSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0EB25C427C24596004E4859 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseStorageSwift-Beta";
 		};
 		A0EB25C527C24596004E4859 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -19,9 +19,6 @@ struct FundEdApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-            //Check & switch btwn Onboarding and UserLoggedIn and Auth...
-//            AuthView()
             ContentView()
                 .environmentObject(viewRouter)
         }

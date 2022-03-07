@@ -29,7 +29,7 @@ class ProjectListVM: ObservableObject {
                     print("completion: \(completion)")
                 }
             }, receiveValue: { [weak self] projects in
-                self?.projects = projects
+                self?.projects = projects.sorted(by: {$0.createdAt > $1.createdAt})
                 self?.appState = .ready
             })
             .store(in: &cancellables)

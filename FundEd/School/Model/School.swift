@@ -8,12 +8,15 @@
 import Foundation
 //import FirebaseFirestoreSwift
 
-struct School: Identifiable, Codable {
+struct School: Identifiable, Codable, Hashable {
     var id: Int
-    let name: String
+    var name: String
     let localGovernment: String
     let type: String
     let ownership: String
+    
+    static let allSchools: [School] = Bundle.main.decode("schools_lagos.json")
+    static let emptySchool: School = School(id: 0, name: "Choose a school", localGovernment: "", type: "", ownership: "")
 }
 
 enum SchoolType: String {

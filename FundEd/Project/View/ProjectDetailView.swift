@@ -53,14 +53,19 @@ struct ProjectDetailView: View {
                                          total: viewModel.project.amount)
                                 .frame(height: 44)
                         }
-                        
-                        Button("Donate") {
-                            print("donate")
-                            viewModel.isDonateActive.toggle()
+                        if viewModel.currentTotalDonation < viewModel.project.amount {
+                            Button("Donate") {
+                                print("donate")
+                                if viewModel.isLoggedIn {
+                                    viewModel.isDonateActive.toggle()
+                                } else {
+                                    viewModel.showLogin.toggle()
+                                }
+                            }
+                            .padding()
+                            .background(.blue.opacity(0.3))
+                            .cornerRadius(10)
                         }
-                        .padding()
-                        .background(.blue.opacity(0.3))
-                        .cornerRadius(10)
                     }
                     
                     
@@ -92,12 +97,13 @@ struct ProjectDetailView: View {
                             HStack(spacing: 10) {
                                 Text("Item")
                                     .frame(width: width * 0.33, alignment: .leading)
+                                    .fixedSize()
                                 Text("Qty")
-                                    .frame(width: width * 0.07, alignment: .leading)
+                                    .frame(width: width * 0.07, alignment: .trailing)
                                 Text("Amount")
-                                    .frame(width: width * 0.3, alignment: .leading)
+                                    .frame(width: width * 0.3, alignment: .trailing)
                                 Text("Total")
-                                    .frame(width: width * 0.3, alignment: .leading)
+                                    .frame(width: width * 0.3, alignment: .trailing)
                             }
                             .font(.subheadline.bold())
                             
@@ -106,11 +112,11 @@ struct ProjectDetailView: View {
                                     Text(material.item)
                                         .frame(width: width * 0.33, alignment: .leading)
                                     Text("\(material.quantity)")
-                                        .frame(width: width * 0.07, alignment: .leading)
-                                    Text("\(material.amount, specifier: "%.2f")")
-                                        .frame(width: width * 0.3, alignment: .leading)
+                                        .frame(width: width * 0.07, alignment: .trailing)
+                                    Text("\(material.cost, specifier: "%.2f")")
+                                        .frame(width: width * 0.3, alignment: .trailing)
                                     Text("\(material.totalAmount, specifier: "%.2f")")
-                                        .frame(width: width * 0.3, alignment: .leading)
+                                        .frame(width: width * 0.3, alignment: .trailing)
                                 }
                                 .font(.subheadline)
                             }
@@ -123,6 +129,9 @@ struct ProjectDetailView: View {
             }
             .alert(isPresented: .constant(viewModel.appState == .error), content: {
                 Alert(title: Text("Error"), message: Text(viewModel.errorMessage), dismissButton: .cancel())
+            })
+            .sheet(isPresented: $viewModel.showLogin, content: {
+                AuthView(hasHistory: true, shouldShowLogin: $viewModel.showLogin)
             })
             .onAppear {
                 viewModel.getMaterials(for: viewModel.project.id!)
@@ -144,7 +153,11 @@ struct ProjectDetailView: View {
                     } else {
                         Button{
                             print("donate")
-                            viewModel.isDonateActive.toggle()
+                            if viewModel.isLoggedIn {
+                                viewModel.isDonateActive.toggle()
+                            } else {
+                                viewModel.showLogin.toggle()
+                            }
                         } label: {
                             Text("Donate")
                         }
@@ -155,7 +168,7 @@ struct ProjectDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         
         NavigationLink(isActive: $viewModel.isDonateActive) {
-            AddDonationView()
+            AddDonationView(viewModel: .init(project: viewModel.project, amountLeft: viewModel.project.amount - viewModel.currentTotalDonation))
         } label: {
             EmptyView()
         }

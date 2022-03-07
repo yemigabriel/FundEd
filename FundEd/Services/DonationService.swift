@@ -12,6 +12,7 @@ import FirebaseFirestoreSwift
 
 protocol DonationServiceProtocol {
     var donationsPublisher: CurrentValueSubject<[Donation], FirebaseError> { get }
+    var donationPublisher: PassthroughSubject<Donation, FirebaseError>{ get }
     func getDonations(for projectId: String)
     func getUserDonations(_ userId: String)
     func donate(_ donation: Donation)
@@ -21,6 +22,7 @@ class DonationService: ObservableObject, DonationServiceProtocol {
     
     static let shared = DonationService()
     var donationsPublisher = CurrentValueSubject<[Donation], FirebaseError>([])
+    var donationPublisher = PassthroughSubject<Donation, FirebaseError>()
     
     private let store = Firestore.firestore()
     private let donationCollection = "donations"
@@ -59,8 +61,12 @@ class DonationService: ObservableObject, DonationServiceProtocol {
     
     func donate(_ donation: Donation) {
         do {
-            _ = try store.collection(donationCollection).addDocument(from: donation)
-            donationsPublisher.send(completion: .finished)
+            let ref = try store.collection(donationCollection).addDocument(from: donation)
+            ref.getDocument { [weak self] snapshot, error in
+                if let donation = try? snapshot?.data(as: Donation.self) {
+                    self?.donationPublisher.send(donation)
+                }
+            }
         } catch {
             print(error.localizedDescription)
             donationsPublisher.send(completion: .failure(.firestoreError(error: error.localizedDescription)))

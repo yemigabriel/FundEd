@@ -15,6 +15,7 @@ struct Donation: Identifiable, Codable {
     let donorName: String
     let amount: Double
     let comment: String?
+    let verified: Bool
     let createdAt: Date
     let updatedAt: Date
 }

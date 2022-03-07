@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @EnvironmentObject var viewRouter: ViewRouter
+    
     var body: some View {
         TabView {
             HomeView()
@@ -21,10 +23,9 @@ struct MainTabView: View {
                     Label("Explore", systemImage: "magnifyingglass")
                 }
             
-            Text("Apply")
-                .padding()
+            AddProjectView()
                 .tabItem {
-                    Label("Apply", systemImage: "square.and.arrow.up")
+                    Label("Create Project", systemImage: "note.text.badge.plus")
                 }
             
             Text("Hello, world!")
@@ -33,6 +34,7 @@ struct MainTabView: View {
                     Label("Settings", systemImage: "gear")
                 }
         }
+        
     }
 }
 

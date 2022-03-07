@@ -18,6 +18,9 @@ protocol ProjectServiceProtocol {
     func getMaterials(for projectId: String)
     func getProject(projectId: String)
     func update(project: Project)
+//    func add(project: Project)
+//    func add(_ materials: [ProjectMaterial], for projectId: String)
+    func add(project: Project, with materials: [ProjectMaterial])
 }
 
 class ProjectService: ObservableObject, ProjectServiceProtocol {
@@ -84,16 +87,83 @@ class ProjectService: ObservableObject, ProjectServiceProtocol {
             }
     }
     
+    func add(_ materials: [ProjectMaterial], for projectId: String) {
+        
+        let projectMaterials = materials.map{ProjectMaterial(item: $0.item, quantity: $0.quantity, cost: $0.cost, projectId: projectId)}
+        
+        let docRef = store.collection(projectMaterialCollection).document()
+        let batch = store.batch()
+        do {
+           try projectMaterials.forEach { projectMaterial in
+                try batch.setData(from: projectMaterial, forDocument: docRef)
+            }
+            print("materials batched")
+        } catch {
+            print(error.localizedDescription)
+            projectMaterialsPublisher.send(completion: .failure(.firestoreError(error: error.localizedDescription)))
+        }
+        
+        batch.commit { [weak self] error in
+            if let error = error {
+                print(error.localizedDescription)
+                self?.projectMaterialsPublisher.send(completion: .failure(.firestoreError(error: error.localizedDescription)))
+                return
+            }
+            self?.projectMaterialsPublisher.send(materials)
+        }
+    }
+    
+    func add(project: Project) {
+        do {
+            _ = try store.collection(projectCollection).addDocument(from: project)
+            projectPublisher.send(project)
+        } catch {
+            print(error.localizedDescription)
+            projectPublisher.send(completion: .failure(.firestoreError(error: error.localizedDescription)))
+        }
+    }
+    
+    func add(project: Project, with materials: [ProjectMaterial]) {
+        
+        print("materials: service-  ", materials)
+        
+        do {
+            //project doc
+            let projectRef = try store.collection(projectCollection).addDocument(from: project)
+            let projectMaterials = materials.map{ProjectMaterial(item: $0.item, quantity: $0.quantity, cost: $0.cost, projectId: projectRef.documentID)}
+            
+            let batch = store.batch()
+            try projectMaterials.forEach { projectMaterial in
+                let materialsRef = store.collection(projectMaterialCollection).document()
+                try batch.setData(from: projectMaterial, forDocument: materialsRef)
+                print("batching: \(projectMaterial.id) - \(projectMaterial.item)")
+            }
+            print("materials batched")
+            
+            batch.commit { [weak self] error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    self?.projectPublisher.send(completion: .failure(.firestoreError(error: error.localizedDescription)))
+                    return
+                }
+                self?.projectPublisher.send(project)
+            }
+        } catch {
+            print(error.localizedDescription)
+            projectPublisher.send(completion: .failure(.firestoreError(error: error.localizedDescription)))
+        }
+    }
+    
     func update(project: Project) {
         guard let documentId = project.id else { return }
         do {
             try store.collection(projectCollection)
                 .document(documentId)
                 .setData(from: project, merge: true)
-            self.projectPublisher.send(project)
+            projectPublisher.send(project)
         } catch {
             print(error.localizedDescription)
-            self.projectPublisher.send(completion: .failure(.firestoreError(error: error.localizedDescription)))
+            projectPublisher.send(completion: .failure(.firestoreError(error: error.localizedDescription)))
         }
     }
     

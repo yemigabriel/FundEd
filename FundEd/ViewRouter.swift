@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
-final class ViewRouter: ObservableObject {
+class ViewRouter: ObservableObject {
     @AppStorage("IS_NEW_USER") var isNewUser: Bool = true
+    @Published var currentTabIndex: Int = 0
 }

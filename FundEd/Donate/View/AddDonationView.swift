@@ -8,32 +8,80 @@
 import SwiftUI
 
 struct AddDonationView: View {
+    @Environment(\.dismiss) var dismiss
+    @StateObject private var viewModel: AddDonationVM
+    
+    init(viewModel: AddDonationVM) {
+        self._viewModel = .init(wrappedValue: viewModel)
+    }
+    
     var body: some View {
         Form {
             Section {
-                Text("Classroom Project")
+                Text(viewModel.project.title)
                     .font(.headline)
                 
-                Text("Amount Remaining: N2000.00")
+                HStack {
+                    Text("Amount Remaining:")
+                        .fontWeight(.bold)
+                    Spacer()
+                    Text("\(viewModel.amountLeft, specifier: "%.2f")")
+                }
                 
-                TextField("Amount:", text: .constant("400"))
-                    .keyboardType(.numberPad)
-                    
-                TextField("Comment:", text: .constant("comment here"))
+                HStack {
+                    Text("Your Donation (N):")
+                        .fontWeight(.bold)
+                    Spacer()
+                    TextField("Your Donation (N):", text: $viewModel.amount)
+                        .keyboardType(.numberPad)
+                        .multilineTextAlignment(.trailing)
+                }
+                
+                Section{
+                    Text("Any comments or feedback?")
+                        .fontWeight(.bold)
+                    TextEditor(text: $viewModel.comment)
+                        .frame(height: 200)
+                }
+                
+            }
+            .alert(isPresented: $viewModel.isDonationSuccessful) {
+                Alert(title: Text("You made a successful donation!"), dismissButton: .default(Text("OK"), action: {
+                    dismiss()
+                }))
+            }
+            .fullScreenCover(isPresented: $viewModel.proceedToPayment, onDismiss: {
+                print("dismissed payment view")
+            }, content: {
+                PaymentView(viewModel: .init(url: viewModel.paymentUrl,
+                                             isPaymentSuccessful: $viewModel.isPaymentSuccessful,
+                                             shouldDismiss: !$viewModel.proceedToPayment))
+            })
+            .onChange(of: viewModel.amount, perform: { newAmount in
+                print(viewModel.paymentUrl)
+            })
+            .onChange(of: viewModel.isPaymentSuccessful) { success in
+                if success {
+                    print("Payment Successful... Save donation")
+                    viewModel.donate()
+                }
             }
         }
         .toolbar {
             ToolbarItemGroup {
                 Button("Continue"){
-                    print("continue") // Paystack stuff - webview?
+                    viewModel.proceedToPayment.toggle()
                 }
+                .disabled(!viewModel.isValidDonation())
             }
         }
+            
+        
     }
 }
 
 struct AddDonationView_Previews: PreviewProvider {
     static var previews: some View {
-        AddDonationView()
+        AddDonationView(viewModel: AddDonationVM(project: Project.sample, amountLeft: 100.0))
     }
 }

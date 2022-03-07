@@ -23,14 +23,11 @@ struct Project: Identifiable, Codable {
     let createdAt: Date
     let updatedAt: Date
     
-    var photoUrl: URL {
-        URL(string: photoPath) ?? URL(string: Project.placeholderUrl)!
+    var photoUrl: URL? {
+        URL(string: photoPath)
     }
     
     var school: School? {
-//        guard let url = Bundle.main.url(forResource: "schools_lagos", withExtension: "json") else { fatalError() }
-//        guard let schools = try? JSONDecoder().decode([School].self, from: url.dataRepresentation) else { fatalError() }
-//        return schools.filter{"\($0.id)" == schoolId}.first
         let schools: [School] = Bundle.main.decode("schools_lagos.json")
         return schools.first(where: {$0.id == schoolId})
     }
@@ -66,6 +63,29 @@ extension Project {
     }
 }
 
+extension Project {
+    init(title: String,
+         shortDescription: String,
+         description: String,
+         photoPath: String,
+         schoolId: Int,
+         amount: Double,
+         author: User) {
+        self.title = title
+        self.shortDescription = shortDescription
+        self.description = description
+        self.photoPath = photoPath
+        self.schoolId = schoolId
+        self.amount = amount
+        self.authorId = author.id
+        self.authorName = author.name
+        self.approved = false
+        self.status = ProjectStatus.ongoing.rawValue
+        self.createdAt = Date.now
+        self.updatedAt = Date.now
+    }
+}
+
 enum ProjectStatus: String {
     case complete = "complete"
     case ongoing = "ongoing"
@@ -78,4 +98,6 @@ enum FirebaseError: Error {
     case dataDecodingError(error: String)
     case firebaseAuth(error: String)
     case userNotExists(error: String)
+    case imageUploadError(error: String)
+    case imageDownloadError(error: String)
 }
