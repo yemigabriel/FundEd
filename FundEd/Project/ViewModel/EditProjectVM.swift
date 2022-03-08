@@ -1,26 +1,23 @@
 //
-//  AddProjectVM.swift
+//  EditProjectVM.swift
 //  FundEd
 //
-//  Created by Yemi Gabriel on 2/28/22.
+//  Created by Yemi Gabriel on 3/7/22.
 //
 
 import Foundation
 import Combine
 
-class AddProjectVM: ObservableObject {
+class EditProjectVM: ObservableObject {
+    @Published var project: Project
+    @Published var projectMaterials: [ProjectMaterial]
+    
     @Published var choosesImage: Bool = false
     @Published var selectedImageData: Data?
-    @Published var uploadedImageUrl: String = ""
-    @Published var projectId: String = UUID().uuidString
-    @Published var title: String = ""
-    @Published var shortDescription: String = ""
-    @Published var description: String = ""
+    
     @Published var allSchools: [School] = School.allSchools
-    @Published var school: School = School.emptySchool
     @Published var schoolFilter: String = ""
     @Published var filteredSchools: [School] = []
-    @Published var projectMaterials: [ProjectMaterial] = [ProjectMaterial.empty]
     
     @Published var appState: AppState = .ready
     @Published var errorMessage: String = ""
@@ -40,9 +37,13 @@ class AddProjectVM: ObservableObject {
     
     var cancellables = Set<AnyCancellable>()
     
-    init(imageUploadService: ImageUploadServiceProtocol = ImageUploadService.shared,
+    
+    init(project: Project,
+         projectMaterials: [ProjectMaterial],
+         imageUploadService: ImageUploadServiceProtocol = ImageUploadService.shared,
          projectService: ProjectServiceProtocol = ProjectService.shared) {
-        
+        self.project = project
+        self.projectMaterials = projectMaterials
         self.imageUploadService = imageUploadService
         self.projectService = projectService
         
@@ -57,9 +58,7 @@ class AddProjectVM: ObservableObject {
                     print("finished")
                 }
             } receiveValue: { [weak self] project in
-                self?.resetAppState()
                 self?.isSuccessful.toggle()
-                self?.resetForm()
             }
             .store(in: &cancellables)
         
@@ -75,7 +74,7 @@ class AddProjectVM: ObservableObject {
                     print("finished")
                 }
             } receiveValue: { [weak self] imagePath in
-                self?.uploadedImageUrl = imagePath
+                self?.project.photoPath = imagePath
                 self?.resetAppState()
             }
             .store(in: &cancellables)
@@ -88,35 +87,6 @@ class AddProjectVM: ObservableObject {
             }
             .assign(to: &$filteredSchools)
 
-    }
-    
-    func isValidProject() -> Bool {
-        return title.trimmingCharacters(in: .whitespacesAndNewlines).isNotEmpty() &&
-        shortDescription.trimmingCharacters(in: .whitespacesAndNewlines).isNotEmpty() &&
-        description.trimmingCharacters(in: .whitespacesAndNewlines).isNotEmpty() &&
-        school.id > 0 &&
-        projectMaterials.count > 0 &&
-        projectMaterials.contains(where: {$0.item.isNotEmpty() && $0.cost > 0}) &&
-        totalAmount > 0 //&&
-        uploadedImageUrl.trimmingCharacters(in: .whitespacesAndNewlines).isNotEmpty()
-    }
-    
-    func getSchoolsBySearchFilter() {
-        filteredSchools = Array(allSchools.filter({schoolFilter == "" ? false : $0.name.lowercased().contains(schoolFilter.lowercased())}).prefix(20))
-    }
-    
-    func resetForm() {
-        uploadedImageUrl = ""
-        projectId = UUID().uuidString
-        title = ""
-        shortDescription = ""
-        description = ""
-        allSchools = School.allSchools
-        school = School.emptySchool
-        schoolFilter = ""
-        filteredSchools = []
-//        projectMaterials.removeAll()
-        projectMaterials = [ProjectMaterial.empty]
     }
     
     func resetAppState() {
@@ -137,21 +107,19 @@ class AddProjectVM: ObservableObject {
         }
     }
     
-    func addProject() {
-        guard let user = user else { return }
-        guard school.id > 0 else { return }
-        let project = Project(title: title,
-                              shortDescription: shortDescription,
-                              description: description,
-                              photoPath: uploadedImageUrl,
-                              schoolId: school.id,
-                              amount: totalAmount,
-                              author: user)
-        
-        loadingMessage = "Starting project ..."
-        appState = .loading
-        print("materials: ", projectMaterials)
-        projectService.add(project: project, with: projectMaterials)
+    func isValidProject() -> Bool {
+        return project.title.trimmingCharacters(in: .whitespacesAndNewlines).isNotEmpty() &&
+        project.shortDescription.trimmingCharacters(in: .whitespacesAndNewlines).isNotEmpty() &&
+        project.description.trimmingCharacters(in: .whitespacesAndNewlines).isNotEmpty() &&
+        project.schoolId > 0 &&
+        projectMaterials.count > 0 &&
+        projectMaterials.contains(where: {$0.item.isNotEmpty() && $0.cost > 0}) &&
+        project.amount > 0 &&
+        project.photoPath.trimmingCharacters(in: .whitespacesAndNewlines).isNotEmpty()
+    }
+    
+    func update() {
+        projectService.update(project: project, with: projectMaterials)
     }
     
     func uploadImage() {
@@ -162,4 +130,6 @@ class AddProjectVM: ObservableObject {
         }
     }
     
+    
 }
+

@@ -12,6 +12,10 @@ extension Alert {
         self = Alert(title: Text(title), message: Text(message ?? ""), dismissButton: .default(Text("OK")))
     }
     
+    init(title: String, message: String?, dismissAction: @escaping ()->Void) {
+        self = Alert(title: Text(title), message: Text(message ?? ""), dismissButton: .default(Text("OK"), action: dismissAction))
+    }
+    
     init(title: String, message: String?, primaryButtonTitle: String, secondaryButtonTitle: String, primaryAction: @escaping ()->Void, secondaryAction: @escaping ()->Void) {
         self = Alert(title: Text(title),
                      message: Text(message ?? ""),

@@ -17,10 +17,11 @@ protocol ProjectServiceProtocol {
     func getProjects()
     func getMaterials(for projectId: String)
     func getProject(projectId: String)
-    func update(project: Project)
+    func update(project: Project, with materials: [ProjectMaterial])
 //    func add(project: Project)
 //    func add(_ materials: [ProjectMaterial], for projectId: String)
     func add(project: Project, with materials: [ProjectMaterial])
+    func delete(project: Project)
 }
 
 class ProjectService: ObservableObject, ProjectServiceProtocol {
@@ -124,9 +125,6 @@ class ProjectService: ObservableObject, ProjectServiceProtocol {
     }
     
     func add(project: Project, with materials: [ProjectMaterial]) {
-        
-        print("materials: service-  ", materials)
-        
         do {
             //project doc
             let projectRef = try store.collection(projectCollection).addDocument(from: project)
@@ -136,7 +134,6 @@ class ProjectService: ObservableObject, ProjectServiceProtocol {
             try projectMaterials.forEach { projectMaterial in
                 let materialsRef = store.collection(projectMaterialCollection).document()
                 try batch.setData(from: projectMaterial, forDocument: materialsRef)
-                print("batching: \(projectMaterial.id) - \(projectMaterial.item)")
             }
             print("materials batched")
             
@@ -154,16 +151,42 @@ class ProjectService: ObservableObject, ProjectServiceProtocol {
         }
     }
     
-    func update(project: Project) {
+    func update(project: Project, with materials: [ProjectMaterial]) {
         guard let documentId = project.id else { return }
         do {
+            //update project
             try store.collection(projectCollection)
                 .document(documentId)
                 .setData(from: project, merge: true)
-            projectPublisher.send(project)
+            //update project materials
+            let batch = store.batch()
+            try materials.forEach { projectMaterial in
+                let materialsRef = store.collection(projectMaterialCollection).document()
+                try batch.setData(from: projectMaterial, forDocument: materialsRef, merge: true)
+                print("update batching: \(projectMaterial.id) - \(projectMaterial.item)")
+            }
+            
+            batch.commit { [weak self] error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    self?.projectPublisher.send(completion: .failure(.firestoreError(error: error.localizedDescription)))
+                    return
+                }
+                self?.projectPublisher.send(project)
+            }
         } catch {
             print(error.localizedDescription)
             projectPublisher.send(completion: .failure(.firestoreError(error: error.localizedDescription)))
+        }
+    }
+    
+    func delete(project: Project) {
+        guard let projectId = project.id else { return }
+        store.collection(projectCollection).document(projectId).delete { [weak self] error in
+            if let error = error {
+                self?.projectPublisher.send(completion: .failure(.firestoreError(error: error.localizedDescription)))
+                return
+            }
         }
     }
     

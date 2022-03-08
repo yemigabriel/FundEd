@@ -10,26 +10,31 @@ import FirebaseFirestoreSwift
 
 struct Project: Identifiable, Codable {
     @DocumentID var id: String?
-    let title: String
-    let shortDescription: String
-    let description: String
-    let photoPath: String
-    let authorId: String
-    let authorName: String
-    let schoolId: Int
-    let amount: Double
-    let approved: Bool?
-    let status: String?
-    let createdAt: Date
-    let updatedAt: Date
+    var title: String
+    var shortDescription: String
+    var description: String
+    var photoPath: String
+    var authorId: String
+    var authorName: String
+    var schoolId: Int
+    var amount: Double
+    var approved: Bool?
+    var status: String?
+    var createdAt: Date
+    var updatedAt: Date
     
     var photoUrl: URL? {
         URL(string: photoPath)
     }
     
     var school: School? {
-        let schools: [School] = Bundle.main.decode("schools_lagos.json")
-        return schools.first(where: {$0.id == schoolId})
+        get{
+            let schools: [School] = Bundle.main.decode("schools_lagos.json")
+            return schools.first(where: {$0.id == schoolId})
+        }
+        set{
+            schoolId = newValue?.id ?? 0
+        }
     }
 }
 

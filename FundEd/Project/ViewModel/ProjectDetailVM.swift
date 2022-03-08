@@ -17,6 +17,9 @@ class ProjectDetailVM: ObservableObject {
     @Published var isDonateActive = false
     @Published var showLogin = false
     
+    @Published var showEditView = false
+    @Published var showDeleteAlert = false
+    
     private var projectService: ProjectServiceProtocol
     private var donationService: DonationServiceProtocol
     private var cancellables = Set<AnyCancellable>()
@@ -99,16 +102,20 @@ class ProjectDetailVM: ObservableObject {
         
     }
     
-    func getProjectDetails(with projectId: String) {
-        projectService.getProject(projectId: projectId)
+    func getProjectDetails() {
+        projectService.getProject(projectId: project.id!)
     }
     
-    func getMaterials(for projectId: String) {
-        projectService.getMaterials(for: projectId)
+    func getMaterials() {
+        projectService.getMaterials(for: project.id!)
     }
     
-    func getDonations(for projectId: String) {
-        donationService.getDonations(for: projectId)
+    func getDonations() {
+        donationService.getDonations(for: project.id!)
+    }
+    
+    func deleteProject() {
+        projectService.delete(project: project)
     }
     
 }

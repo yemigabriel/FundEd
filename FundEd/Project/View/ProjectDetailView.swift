@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProjectDetailView: View {
+    @Environment(\.dismiss) var dismiss
     @StateObject private var viewModel: ProjectDetailVM
     
     init(viewModel: ProjectDetailVM) {
@@ -93,13 +94,13 @@ struct ProjectDetailView: View {
                     
                     GeometryReader { proxy in
                         let width = proxy.size.width
-                        VStack(alignment: .leading) {
+                        VStack() {
                             HStack(spacing: 10) {
                                 Text("Item")
-                                    .frame(width: width * 0.33, alignment: .leading)
+                                    .frame(width: width * 0.3, alignment: .leading)
                                     .fixedSize()
                                 Text("Qty")
-                                    .frame(width: width * 0.07, alignment: .trailing)
+                                    .frame(width: width * 0.1, alignment: .trailing)
                                 Text("Amount")
                                     .frame(width: width * 0.3, alignment: .trailing)
                                 Text("Total")
@@ -108,9 +109,11 @@ struct ProjectDetailView: View {
                             .font(.subheadline.bold())
                             
                             ForEach(viewModel.projectMaterials, id: \.id) { material in
+                                Color(uiColor: .systemGray4).frame(width: width, height: 1)
                                 HStack(spacing: 10) {
                                     Text(material.item)
                                         .frame(width: width * 0.33, alignment: .leading)
+                                        .fixedSize()
                                     Text("\(material.quantity)")
                                         .frame(width: width * 0.07, alignment: .trailing)
                                     Text("\(material.cost, specifier: "%.2f")")
@@ -121,32 +124,45 @@ struct ProjectDetailView: View {
                                 .font(.subheadline)
                             }
                         }
-                    }.frame(maxWidth: .infinity)
-                    
+                        .frame(width: width)
+                    }
+                    .padding()
                 }
                 .padding()
+                
                 Spacer(minLength: 100)
             }
             .alert(isPresented: .constant(viewModel.appState == .error), content: {
                 Alert(title: Text("Error"), message: Text(viewModel.errorMessage), dismissButton: .cancel())
             })
+            .alert(isPresented: $viewModel.showDeleteAlert, content: {
+                Alert(title: "Are you sure you want to delete this project?", message: nil, primaryButtonTitle: "Yes", secondaryButtonTitle: "Cancel") {
+                    viewModel.deleteProject()
+                    dismiss()
+                } secondaryAction: {
+                    viewModel.showDeleteAlert = false
+                }
+            })
+            .sheet(isPresented: $viewModel.showEditView, content: {
+                EditProjectView(project: viewModel.project, materials: viewModel.projectMaterials)
+            })
             .sheet(isPresented: $viewModel.showLogin, content: {
                 AuthView(hasHistory: true, shouldShowLogin: $viewModel.showLogin)
             })
             .onAppear {
-                viewModel.getMaterials(for: viewModel.project.id!)
-                viewModel.getDonations(for: viewModel.project.id!)
+                viewModel.getMaterials()
+                viewModel.getDonations()
             }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     if viewModel.isAuthor {
                         Button{
-                            print("edit")
+                            viewModel.showEditView.toggle()
                         } label: {
                             Label("Edit", systemImage: "pencil")
                         }
                         Button{
-                            print("delete")
+                            viewModel.showDeleteAlert.toggle()
                         } label: {
                             Label("Delete", systemImage: "trash")
                         }

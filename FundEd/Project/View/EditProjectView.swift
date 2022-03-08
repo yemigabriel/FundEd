@@ -1,16 +1,20 @@
 //
-//  AddProjectView.swift
+//  EditProjectView.swift
 //  FundEd
 //
-//  Created by Yemi Gabriel on 2/28/22.
+//  Created by Yemi Gabriel on 3/7/22.
 //
 
 import SwiftUI
 import Combine
 
-struct AddProjectView: View {
-    @StateObject private var viewModel = AddProjectVM()
+struct EditProjectView: View {
+    @Environment(\.dismiss) var dismiss
+    @StateObject private var viewModel: EditProjectVM
     
+    init(project: Project, materials: [ProjectMaterial]) {
+        self._viewModel = .init(wrappedValue: EditProjectVM(project: project, projectMaterials: materials))
+    }
     var body: some View {
         NavigationView {
             ZStack {
@@ -21,39 +25,35 @@ struct AddProjectView: View {
                             Text("Project Title:")
                                 .fontWeight(.bold)
                             Spacer()
-                            TextField("Project Title", text: $viewModel.title)
+                            TextField("Project Title", text: $viewModel.project.title)
                                 .multilineTextAlignment(.trailing)
                         }
                         
                         VStack(alignment: .leading) {
                             Text("Summary:")
                                 .fontWeight(.bold)
-                            TextEditor(text: $viewModel.shortDescription)
+                            TextEditor(text: $viewModel.project.shortDescription)
                         }
                         
                         VStack {
-                        Picker(selection: $viewModel.school) {
-                            
-                            SearchBar(text: $viewModel.schoolFilter, placeholder: "Search Schools")
-                            
-                            ForEach(viewModel.filteredSchools, id: \.id) { school in
-                                Text(school.name)
-                                    .font(.caption)
-                                    .multilineTextAlignment(.leading)
-                                    .tag(school)
+                            Picker(selection: $viewModel.project.school) {
+                                SearchBar(text: $viewModel.schoolFilter, placeholder: "Search Schools")
+                                ForEach(viewModel.filteredSchools, id: \.id) { school in
+                                    Text(school.name)
+                                        .font(.caption)
+                                        .multilineTextAlignment(.leading)
+                                        .tag(school)
                                 }
-                            
-                            
-                        } label: {
-                            Text("Select School").fontWeight(.bold)
-                        }
+                            } label: {
+                                Text("Select School").fontWeight(.bold)
+                            }
                         }
                     }
                     
                     Section{
                         Text("Tell us more about this project:")
                             .fontWeight(.bold)
-                        TextEditor(text: $viewModel.description)
+                        TextEditor(text: $viewModel.project.description)
                             .frame(height: 200)
                     }
                     
@@ -64,21 +64,19 @@ struct AddProjectView: View {
                             }
                             Spacer()
                             //TODO: Review and improve this block
-                            if let _ = viewModel.selectedImageData {
-                                if let imageUrl = URL(string: viewModel.uploadedImageUrl) {
-                                    AsyncImage(url: imageUrl) { image in
-                                        image
-                                            .resizable()
-                                            .cardImageStyle(width: 44, height: 44)
-                                    } placeholder: {
-                                            Image(systemName: "photo")
-                                                .imageScale(.large)
-                                                .cardImageStyle(width: 44, height: 44)
-                                            .background(Color(uiColor: .systemGray3))
-                                    }
-                                } else {
-                                    EmptyView()
+                            if let imageUrl = viewModel.project.photoUrl {
+                                AsyncImage(url: imageUrl) { image in
+                                    image
+                                        .resizable()
+                                        .cardImageStyle(width: 44, height: 44)
+                                } placeholder: {
+                                    Image(systemName: "photo")
+                                        .imageScale(.large)
+                                        .cardImageStyle(width: 44, height: 44)
+                                        .background(Color(uiColor: .systemGray3))
                                 }
+                            } else {
+                                EmptyView()
                             }
                         }
                     }
@@ -143,7 +141,6 @@ struct AddProjectView: View {
                 }
             }
             .onChange(of: viewModel.selectedImageData, perform: { imageData in
-                print("image data received here...")
                 if let _ = imageData {
                     viewModel.uploadImage()
                 }
@@ -155,13 +152,15 @@ struct AddProjectView: View {
                 Alert(title: "Error", message: viewModel.errorMessage)
             }
             .alert(isPresented: $viewModel.isSuccessful) {
-                Alert(title: "Your project has been successfully added", message: nil)
+                Alert(title: "Your project has been successfully updated", message: nil) {
+                    dismiss()
+                }
             }
-            .navigationTitle("Start a Project")
+            .navigationTitle("Edit Project")
             .toolbar {
                 ToolbarItem {
                     Button ("Finish") {
-                        viewModel.addProject()
+                        viewModel.update()
                     }
                     .disabled(!viewModel.isValidProject())
                 }
@@ -181,8 +180,8 @@ struct AddProjectView: View {
     }
 }
 
-struct AddProjectView_Previews: PreviewProvider {
+struct EditProjectView_Previews: PreviewProvider {
     static var previews: some View {
-        AddProjectView()
+        EditProjectView(project: Project.sample, materials: [ProjectMaterial.empty])
     }
 }

@@ -63,6 +63,8 @@
 		A0EB25CF27C24760004E4859 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EB25CE27C24760004E4859 /* AuthService.swift */; };
 		A0EB25D327C26856004E4859 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EB25D227C26856004E4859 /* User.swift */; };
 		A0F268A127D5C7C1000C5AD5 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F268A027D5C7C1000C5AD5 /* SearchBar.swift */; };
+		A0F268A327D6561A000C5AD5 /* EditProjectVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F268A227D6561A000C5AD5 /* EditProjectVM.swift */; };
+		A0F268A527D65C0F000C5AD5 /* EditProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F268A427D65C0F000C5AD5 /* EditProjectView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +130,8 @@
 		A0EB25CE27C24760004E4859 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		A0EB25D227C26856004E4859 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A0F268A027D5C7C1000C5AD5 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		A0F268A227D6561A000C5AD5 /* EditProjectVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProjectVM.swift; sourceTree = "<group>"; };
+		A0F268A427D65C0F000C5AD5 /* EditProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProjectView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +186,7 @@
 				A02D8BBA27CA992C00C173B3 /* ProjectCardView.swift */,
 				A02D8BC227CB719B00C173B3 /* ProjectDetailView.swift */,
 				A02D8BDA27CC7A6B00C173B3 /* AddProjectView.swift */,
+				A0F268A427D65C0F000C5AD5 /* EditProjectView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -193,6 +198,7 @@
 				A02D8BB827CA924D00C173B3 /* ProjectCardVM.swift */,
 				A02D8BC427CB733600C173B3 /* ProjectDetailVM.swift */,
 				A02D8BD827CC7A4100C173B3 /* AddProjectVM.swift */,
+				A0F268A227D6561A000C5AD5 /* EditProjectVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -549,6 +555,7 @@
 				A0A5171D26D53FCF00FE363F /* HomeView.swift in Sources */,
 				A08C065D27BEC9E20043B9DC /* AuthView.swift in Sources */,
 				A02D8BBB27CA992C00C173B3 /* ProjectCardView.swift in Sources */,
+				A0F268A327D6561A000C5AD5 /* EditProjectVM.swift in Sources */,
 				A0D0471A26C83A7300F86652 /* ContentView.swift in Sources */,
 				A02D8BD527CC5E0D00C173B3 /* PaymentVM.swift in Sources */,
 				A02D8BCB27CBC5F800C173B3 /* AddDonationView.swift in Sources */,
@@ -568,6 +575,7 @@
 				A02D8BE327CC7F3600C173B3 /* ImageUploadService.swift in Sources */,
 				A02D8BA227CA779E00C173B3 /* ProjectListView.swift in Sources */,
 				A02D8BD927CC7A4100C173B3 /* AddProjectVM.swift in Sources */,
+				A0F268A527D65C0F000C5AD5 /* EditProjectView.swift in Sources */,
 				A09E163E27C78129002CDAB9 /* UserProfileService.swift in Sources */,
 				A02D8BBD27CA9FFB00C173B3 /* View+Extension.swift in Sources */,
 				A0D0471826C83A7300F86652 /* FundEdApp.swift in Sources */,
