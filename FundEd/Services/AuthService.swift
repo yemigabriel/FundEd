@@ -86,7 +86,13 @@ class AuthService: ObservableObject, AuthServiceProtocol {
     }
     
     func signOut() {
-        try? auth.signOut()
+        do {
+            try auth.signOut()
+            UserDefaults.standard.removeUser()
+            userPublisher.send(completion: .finished)
+        } catch {
+            userPublisher.send(completion: .failure(.firebaseAuth(error: error.localizedDescription)))
+        }
     }
     
     

@@ -17,22 +17,21 @@ struct MainTabView: View {
                     Label("Home", systemImage: "homekit")
                 }
             
-            Text("Explore")
-                .padding()
-                .tabItem {
-                    Label("Explore", systemImage: "magnifyingglass")
-                }
+//            ExploreView()
+//                .tabItem {
+//                    Label("Explore", systemImage: "magnifyingglass")
+//                }
             
             AddProjectView()
                 .tabItem {
                     Label("Create Project", systemImage: "note.text.badge.plus")
                 }
             
-            Text("Hello, world!")
-                .padding()
+            SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }
+                .environmentObject(viewRouter)
         }
         
     }

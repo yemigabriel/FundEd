@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct ProjectListView: View {
-    @StateObject private var viewModel = ProjectListVM()
+    @StateObject private var viewModel: ProjectListVM
     
-    var columns: [GridItem] = [
+    init(viewModel: ProjectListVM = ProjectListVM()) {
+        _viewModel = .init(wrappedValue: viewModel)
+    }
+    
+    private var columns: [GridItem] = [
         GridItem(.adaptive(minimum: 300, maximum: 400), spacing: 50)
     ]
     
@@ -19,7 +23,7 @@ struct ProjectListView: View {
             if viewModel.appState == .loading {
                 ProgressView("Fetching projects...")
             }
-            ForEach(viewModel.projects, id: \.id) { project in
+            ForEach(viewModel.filteredProjects, id: \.id) { project in
                 NavigationLink {
                     ProjectDetailView(viewModel: .init(project: project))
                 } label: {
@@ -31,9 +35,21 @@ struct ProjectListView: View {
         .alert(isPresented: .constant(viewModel.appState == .error), content: {
             Alert(title: Text("Error"), message: Text(viewModel.errorMessage), dismissButton: .cancel())
         })
-        .onAppear {
+        .task {
+            if viewModel.isAdmin {
+                viewModel.getAllProjects()
+                return
+            }
+            if viewModel.isUser {
+                viewModel.getMyProjects()
+                return
+            }
             viewModel.getProjects()
         }
+        .searchable(text: $viewModel.searchFilter)
+//        .onAppear {
+//            viewModel.getProjects()
+//        }
         
         
 

@@ -9,15 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var viewRouter: ViewRouter
+    
     var body: some View {
-        if viewRouter.isNewUser {
-            Text("Onboarding")
-                .onAppear {
-                    viewRouter.isNewUser = false
-                }
-        } else {
-            MainTabView()
-        }
+        //MARK: Onboarding design later
+//        if viewRouter.isNewUser {
+//            Text("Onboarding")
+//                .onAppear {
+//                    viewRouter.isNewUser = false
+//                }
+//        } else {
+            if viewRouter.isLoggedIn {
+                MainTabView()
+            } else {
+                AuthView(shouldShowLogin: .constant(false))
+            }
+//        }
     }
 }
 

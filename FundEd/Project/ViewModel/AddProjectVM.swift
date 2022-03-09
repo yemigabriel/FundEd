@@ -97,7 +97,7 @@ class AddProjectVM: ObservableObject {
         school.id > 0 &&
         projectMaterials.count > 0 &&
         projectMaterials.contains(where: {$0.item.isNotEmpty() && $0.cost > 0}) &&
-        totalAmount > 0 //&&
+        totalAmount > 0 &&
         uploadedImageUrl.trimmingCharacters(in: .whitespacesAndNewlines).isNotEmpty()
     }
     

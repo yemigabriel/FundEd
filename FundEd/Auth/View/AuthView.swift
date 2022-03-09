@@ -14,20 +14,32 @@ struct AuthView: View {
     @Binding var shouldShowLogin: Bool
     
     var body: some View {
-        Group {
-        if authViewModel.authState == .login {
-            LoginView(viewModel: authViewModel)
-        }
-        if authViewModel.authState == .signup {
-            SignupView(viewModel: authViewModel)
-        }
-        if authViewModel.authState == .currentUser && !hasHistory {
-            ContentView()
-        }
-        }.onAppear {
-            if hasHistory {
-                shouldShowLogin = false
+        ZStack {
+            Group {
+                if authViewModel.authState == .login {
+                    LoginView(viewModel: authViewModel)
+                }
+                if authViewModel.authState == .signup {
+                    SignupView(viewModel: authViewModel)
+                }
+                if authViewModel.authState == .currentUser && !hasHistory {
+                    MainTabView()
+                }
+            }.onAppear {
+                if hasHistory {
+                    shouldShowLogin = false
+                }
             }
+            
+            if authViewModel.appState == .loading {
+                ProgressView()
+                    .padding()
+                    .foregroundColor(.white)
+                    .tint(.white)
+                    .background(.black.opacity(0.7))
+                    .cornerRadius(10)
+            }
+            
         }
     }
 }

@@ -77,6 +77,7 @@ class AddDonationVM: ObservableObject {
     
     func donate() {
         let donation = Donation(projectId: project.id!,
+                                projectTitle: project.title,
                                 donorId: donorId,
                                 donorName: donorName,
                                 amount: Double(amount) ?? 0.0,

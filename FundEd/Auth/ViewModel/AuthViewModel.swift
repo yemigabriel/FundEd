@@ -10,6 +10,7 @@ import Combine
 
 class AuthViewModel: ObservableObject {
     @Published var authState: AuthState = .login
+    @Published var appState: AppState = .ready
     @Published var name: String = ""
     @Published var email: String = ""
     @Published var password: String = ""
@@ -36,6 +37,7 @@ class AuthViewModel: ObservableObject {
         } receiveValue: { [weak self] user in
             self?.user = user
             self?.authState = .currentUser
+            self?.appState = .ready
         }
         .store(in: &cancellables)
     }
@@ -86,15 +88,18 @@ class AuthViewModel: ObservableObject {
     }
     
     func signIn() {
+        appState = .loading
         authService.signIn(email: email, password: password)
     }
     
     func signUp() {
+        appState = .loading
         let user = User(id: "id", name: name, email: email, password: password, role: role.rawValue)
         authService.signUp(user)
     }
     
     func signOut() {
+        appState = .loading
         authService.signOut()
         authState = .login
         self.user = nil

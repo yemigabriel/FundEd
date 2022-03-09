@@ -13,6 +13,7 @@ import FirebaseFirestoreSwift
 protocol DonationServiceProtocol {
     var donationsPublisher: CurrentValueSubject<[Donation], FirebaseError> { get }
     var donationPublisher: PassthroughSubject<Donation, FirebaseError>{ get }
+    func getDonations()
     func getDonations(for projectId: String)
     func getUserDonations(_ userId: String)
     func donate(_ donation: Donation)
@@ -28,6 +29,22 @@ class DonationService: ObservableObject, DonationServiceProtocol {
     private let donationCollection = "donations"
     
     private init() {}
+    
+    func getDonations() {
+        store.collection(donationCollection)
+            .getDocuments { [weak self] snapshot, error in
+                if let error = error {
+                    self?.donationsPublisher.send(completion: .failure(.firestoreError(error: error.localizedDescription)))
+                    return
+                }
+                
+                let donations = snapshot?.documents.compactMap({ queryDocumentSnapshot in
+                    try? queryDocumentSnapshot.data(as: Donation.self)
+                }) ?? []
+                
+                self?.donationsPublisher.send(donations)
+            }
+    }
     
     func getDonations(for projectId: String) {
         store.collection(donationCollection)
@@ -45,6 +62,8 @@ class DonationService: ObservableObject, DonationServiceProtocol {
     }
     
     func getUserDonations(_ userId: String) {
+        print("user id: ", userId)
+        
         store.collection(donationCollection)
             .whereField("donorId", isEqualTo: userId)
             .getDocuments { [weak self] snapshot, error in

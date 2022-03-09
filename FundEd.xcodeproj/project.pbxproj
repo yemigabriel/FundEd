@@ -51,10 +51,18 @@
 		A09E163E27C78129002CDAB9 /* UserProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09E163D27C78129002CDAB9 /* UserProfileService.swift */; };
 		A0A5171D26D53FCF00FE363F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A5171C26D53FCF00FE363F /* HomeView.swift */; };
 		A0B61C1827D465FE0097C866 /* Alert+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B61C1727D465FE0097C866 /* Alert+Extension.swift */; };
+		A0C7143427D8CFA7004EBAF5 /* DonationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C7143327D8CFA7004EBAF5 /* DonationListView.swift */; };
+		A0C7143627D8D383004EBAF5 /* DonationListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C7143527D8D383004EBAF5 /* DonationListVM.swift */; };
+		A0C7143827D8D7EA004EBAF5 /* DonationCardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C7143727D8D7EA004EBAF5 /* DonationCardVM.swift */; };
+		A0C7143A27D8D9C5004EBAF5 /* DonationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C7143927D8D9C5004EBAF5 /* DonationCardView.swift */; };
 		A0D0471826C83A7300F86652 /* FundEdApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D0471726C83A7300F86652 /* FundEdApp.swift */; };
 		A0D0471A26C83A7300F86652 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D0471926C83A7300F86652 /* ContentView.swift */; };
 		A0D0471C26C83A7500F86652 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0D0471B26C83A7500F86652 /* Assets.xcassets */; };
 		A0D0471F26C83A7500F86652 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0D0471E26C83A7500F86652 /* Preview Assets.xcassets */; };
+		A0E0F51F27D775C40010B7CB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E0F51E27D775C40010B7CB /* SettingsView.swift */; };
+		A0E0F52327D77BFD0010B7CB /* SettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E0F52227D77BFD0010B7CB /* SettingsVM.swift */; };
+		A0E0F52827D781D60010B7CB /* ExploreVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E0F52727D781D60010B7CB /* ExploreVM.swift */; };
+		A0E0F52A27D781E80010B7CB /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E0F52927D781E80010B7CB /* ExploreView.swift */; };
 		A0EB25C127C2307F004E4859 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0EB25C027C2307F004E4859 /* GoogleService-Info.plist */; };
 		A0EB25C627C24596004E4859 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = A0EB25C527C24596004E4859 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		A0EB25C827C24596004E4859 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A0EB25C727C24596004E4859 /* FirebaseAuth */; };
@@ -120,12 +128,20 @@
 		A09E163D27C78129002CDAB9 /* UserProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileService.swift; sourceTree = "<group>"; };
 		A0A5171C26D53FCF00FE363F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A0B61C1727D465FE0097C866 /* Alert+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Extension.swift"; sourceTree = "<group>"; };
+		A0C7143327D8CFA7004EBAF5 /* DonationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationListView.swift; sourceTree = "<group>"; };
+		A0C7143527D8D383004EBAF5 /* DonationListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationListVM.swift; sourceTree = "<group>"; };
+		A0C7143727D8D7EA004EBAF5 /* DonationCardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationCardVM.swift; sourceTree = "<group>"; };
+		A0C7143927D8D9C5004EBAF5 /* DonationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationCardView.swift; sourceTree = "<group>"; };
 		A0D0471426C83A7300F86652 /* FundEd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FundEd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0D0471726C83A7300F86652 /* FundEdApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundEdApp.swift; sourceTree = "<group>"; };
 		A0D0471926C83A7300F86652 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A0D0471B26C83A7500F86652 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A0D0471E26C83A7500F86652 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A0D0472026C83A7500F86652 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0E0F51E27D775C40010B7CB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A0E0F52227D77BFD0010B7CB /* SettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVM.swift; sourceTree = "<group>"; };
+		A0E0F52727D781D60010B7CB /* ExploreVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExploreVM.swift; path = FundEd/Explore/ViewModel/ExploreVM.swift; sourceTree = SOURCE_ROOT; };
+		A0E0F52927D781E80010B7CB /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		A0EB25C027C2307F004E4859 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A0EB25CE27C24760004E4859 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		A0EB25D227C26856004E4859 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -227,6 +243,8 @@
 			children = (
 				A02D8BCA27CBC5F700C173B3 /* AddDonationView.swift */,
 				A02D8BD227CC4D9C00C173B3 /* PaymentView.swift */,
+				A0C7143327D8CFA7004EBAF5 /* DonationListView.swift */,
+				A0C7143927D8D9C5004EBAF5 /* DonationCardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -236,6 +254,8 @@
 			children = (
 				A02D8BCC27CBE7E600C173B3 /* AddDonationVM.swift */,
 				A02D8BD427CC5E0D00C173B3 /* PaymentVM.swift */,
+				A0C7143527D8D383004EBAF5 /* DonationListVM.swift */,
+				A0C7143727D8D7EA004EBAF5 /* DonationCardVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -291,6 +311,8 @@
 		A08C064F27BEBF3B0043B9DC /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				A0E0F52127D77BC20010B7CB /* ViewModel */,
+				A0E0F52027D77BBA0010B7CB /* View */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -375,6 +397,7 @@
 		A0D0471626C83A7300F86652 /* FundEd */ = {
 			isa = PBXGroup;
 			children = (
+				A0E0F52427D781790010B7CB /* Explore */,
 				A0910BD527CF62250082B444 /* schools_lagos.json */,
 				A02D8BAD27CA7BB200C173B3 /* School */,
 				A02D8BA727CA79BC00C173B3 /* Donate */,
@@ -405,6 +428,47 @@
 				A0D0471E26C83A7500F86652 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A0E0F52027D77BBA0010B7CB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A0E0F51E27D775C40010B7CB /* SettingsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A0E0F52127D77BC20010B7CB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A0E0F52227D77BFD0010B7CB /* SettingsVM.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A0E0F52427D781790010B7CB /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				A0E0F52627D781A60010B7CB /* ViewModel */,
+				A0E0F52527D781A00010B7CB /* View */,
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
+		A0E0F52527D781A00010B7CB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A0E0F52927D781E80010B7CB /* ExploreView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A0E0F52627D781A60010B7CB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A0E0F52727D781D60010B7CB /* ExploreVM.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		A0EB25CD27C2474F004E4859 /* Services */ = {
@@ -549,6 +613,7 @@
 				A02D8BB027CA7BCB00C173B3 /* School.swift in Sources */,
 				A08C065927BEC0AC0043B9DC /* AuthViewModel.swift in Sources */,
 				A02D8BD127CC494600C173B3 /* Webview.swift in Sources */,
+				A0C7143627D8D383004EBAF5 /* DonationListVM.swift in Sources */,
 				A02D8BDD27CC7AFD00C173B3 /* PhotoPickerController.swift in Sources */,
 				A02D8BC927CBBC3000C173B3 /* DonationService.swift in Sources */,
 				A02D8BD327CC4D9C00C173B3 /* PaymentView.swift in Sources */,
@@ -565,6 +630,7 @@
 				A02D8BC127CAE4E000C173B3 /* Bundle+Extension.swift in Sources */,
 				A02D8BA427CA77B300C173B3 /* Project.swift in Sources */,
 				A02D8BB927CA924D00C173B3 /* ProjectCardVM.swift in Sources */,
+				A0E0F52A27D781E80010B7CB /* ExploreView.swift in Sources */,
 				A02D8BCD27CBE7E600C173B3 /* AddDonationVM.swift in Sources */,
 				A02D8BB527CA84BF00C173B3 /* ProjectListVM.swift in Sources */,
 				A0EB25D327C26856004E4859 /* User.swift in Sources */,
@@ -572,14 +638,20 @@
 				A02D8BCF27CBEC0300C173B3 /* Collection+Extension.swift in Sources */,
 				A02D8BA627CA793500C173B3 /* ProjectMaterial.swift in Sources */,
 				A02D8B9927CA17C000C173B3 /* ViewRouter.swift in Sources */,
+				A0E0F52327D77BFD0010B7CB /* SettingsVM.swift in Sources */,
 				A02D8BE327CC7F3600C173B3 /* ImageUploadService.swift in Sources */,
+				A0E0F51F27D775C40010B7CB /* SettingsView.swift in Sources */,
 				A02D8BA227CA779E00C173B3 /* ProjectListView.swift in Sources */,
 				A02D8BD927CC7A4100C173B3 /* AddProjectVM.swift in Sources */,
 				A0F268A527D65C0F000C5AD5 /* EditProjectView.swift in Sources */,
+				A0C7143827D8D7EA004EBAF5 /* DonationCardVM.swift in Sources */,
+				A0E0F52827D781D60010B7CB /* ExploreVM.swift in Sources */,
 				A09E163E27C78129002CDAB9 /* UserProfileService.swift in Sources */,
 				A02D8BBD27CA9FFB00C173B3 /* View+Extension.swift in Sources */,
 				A0D0471826C83A7300F86652 /* FundEdApp.swift in Sources */,
+				A0C7143A27D8D9C5004EBAF5 /* DonationCardView.swift in Sources */,
 				A02D8BDB27CC7A6B00C173B3 /* AddProjectView.swift in Sources */,
+				A0C7143427D8CFA7004EBAF5 /* DonationListView.swift in Sources */,
 				A0F268A127D5C7C1000C5AD5 /* SearchBar.swift in Sources */,
 				A02D8BD727CC6D6300C173B3 /* Binding+Extension.swift in Sources */,
 				A02D8BC727CBB03000C173B3 /* UserDefaults+Extension.swift in Sources */,

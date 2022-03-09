@@ -51,7 +51,6 @@ struct AddDonationView: View {
                 }))
             }
             .fullScreenCover(isPresented: $viewModel.proceedToPayment, onDismiss: {
-                print("dismissed payment view")
             }, content: {
                 PaymentView(viewModel: .init(url: viewModel.paymentUrl,
                                              isPaymentSuccessful: $viewModel.isPaymentSuccessful,

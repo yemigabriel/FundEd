@@ -14,7 +14,8 @@ protocol ProjectServiceProtocol {
     var projectsPublisher: CurrentValueSubject<[Project], FirebaseError> { get }  //Published<[Project]>.Publisher {get}
     var projectPublisher: PassthroughSubject<Project, FirebaseError> { get }
     var projectMaterialsPublisher: PassthroughSubject<[ProjectMaterial], FirebaseError> { get }
-    func getProjects()
+    func getProjects(limit: Int)
+    func getProjects(for userId: String)
     func getMaterials(for projectId: String)
     func getProject(projectId: String)
     func update(project: Project, with materials: [ProjectMaterial])
@@ -37,8 +38,24 @@ class ProjectService: ObservableObject, ProjectServiceProtocol {
     
     private init() {}
     
-    func getProjects() {
+    func getProjects(limit: Int = 20) {
         store.collection(projectCollection)
+            .limit(to: limit)
+            .getDocuments { [weak self] snapshot, error in
+                if let error = error {
+                    self?.projectsPublisher.send(completion: .failure(.firestoreError(error: error.localizedDescription)))
+                    return
+                }
+                let projects = snapshot?.documents.compactMap({ queryDocumentSnapshot in
+                    try? queryDocumentSnapshot.data(as: Project.self)
+                }) ?? []
+                self?.projectsPublisher.send(projects)
+            }
+    }
+    
+    func getProjects(for userId: String) {
+        store.collection(projectCollection)
+            .whereField("authorId", isEqualTo: userId)
             .getDocuments { [weak self] snapshot, error in
                 if let error = error {
                     self?.projectsPublisher.send(completion: .failure(.firestoreError(error: error.localizedDescription)))
@@ -131,9 +148,10 @@ class ProjectService: ObservableObject, ProjectServiceProtocol {
             let projectMaterials = materials.map{ProjectMaterial(item: $0.item, quantity: $0.quantity, cost: $0.cost, projectId: projectRef.documentID)}
             
             let batch = store.batch()
-            try projectMaterials.forEach { projectMaterial in
+            for projectMaterial in projectMaterials {
                 let materialsRef = store.collection(projectMaterialCollection).document()
                 try batch.setData(from: projectMaterial, forDocument: materialsRef)
+                print("batching data with id: \(materialsRef.documentID)")
             }
             print("materials batched")
             
