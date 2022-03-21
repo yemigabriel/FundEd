@@ -41,6 +41,12 @@ https://user-images.githubusercontent.com/8160551/158989532-60aaf088-5e99-4293-b
 
 
 
+## Acknowledgements
+
+- JSON data for schools was converted from @kantologist 's repo: https://github.com/kantologist/lagos_schools
+
+
+
 ## Feedback
 
 If you have any feedback, please reach out to me at yemigabriel@gmail.com
