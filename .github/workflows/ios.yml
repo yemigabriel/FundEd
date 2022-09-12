@@ -1,4 +1,4 @@
-name: Build and Test workflow
+name: "Build and Test workflow"
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
 
 jobs:
   test:
-    name: Test changes
+    name: Test
     runs-on: macos-latest
     strategy:
         matrix:
